@@ -16,3 +16,12 @@ pipeline {
         }
     }
 }
+
+
+stage('SonarQube Analysis') {
+    steps {
+        withSonarQubeEnv('SonarQube') {
+            sh '. venv/bin/activate && sonar-scanner -Dsonar.projectKey=e-commerce-app -Dsonar.host.url=http://localhost:9000 -Dsonar.login=<sqa_b49648dacaabe3dd318676eb9b2c92dc57e0bc70>'
+        }
+    }
+}
